@@ -26,6 +26,7 @@ export default function Step1() {
 
 			<div className="relative w-full max-w-3xl">
 				<Image
+					className="rounded-md object-cover shadow-xl outline outline-4 outline-gray-700"
 					src="/TEST-chad.webp"
 					alt="TEST-IMAGE"
 					width={1920}
