@@ -2,6 +2,7 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Hero from "@/components/Hero";
 import { BasicStarReview } from "@/components/ui/basic-star-component";
 import Step1 from "@/components/Step1";
+import Step2 from "@/components/Step2";
 
 export default function Home() {
 	return (
@@ -34,6 +35,11 @@ export default function Home() {
 			>
 				<MaxWidthWrapper className="mt-6 py-0 px-0 max-w-7xl flex flex-col items-center gap-10">
 					<Step1 />
+				</MaxWidthWrapper>
+			</section>
+			<section className="relative overflow-hidden border-b border-gray-200 px-4 py-12 text-center sm:py-28">
+				<MaxWidthWrapper className="mt-6 py-0 px-0 max-w-7xl flex flex-col items-center gap-10">
+					<Step2 />
 				</MaxWidthWrapper>
 			</section>
 		</main>
