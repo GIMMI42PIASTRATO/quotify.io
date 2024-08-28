@@ -1,7 +1,7 @@
 import { eb_garamond } from "@/utils/fonts";
 import CtaButton from "./CtaButton";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "./button";
 
 export default function Hero() {
 	return (

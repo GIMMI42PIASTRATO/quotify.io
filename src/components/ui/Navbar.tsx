@@ -1,6 +1,6 @@
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import Link from "next/link";
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "./button";
 import { ArrowRight } from "lucide-react";
 
 export default function Navbar() {

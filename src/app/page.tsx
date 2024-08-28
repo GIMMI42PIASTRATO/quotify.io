@@ -1,9 +1,9 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import Hero from "@/components/Hero";
+import MaxWidthWrapper from "@/components/ui/MaxWidthWrapper";
+import Hero from "@/components/ui/Hero";
 import { BasicStarReview } from "@/components/ui/basic-star-component";
-import Step1 from "@/components/Step1";
-import Step2 from "@/components/Step2";
-import Step3 from "@/components/Step3";
+import Step1 from "@/components/ui/Step1";
+import Step2 from "@/components/ui/Step2";
+import Step3 from "@/components/ui/Step3";
 
 export default function Home() {
 	return (

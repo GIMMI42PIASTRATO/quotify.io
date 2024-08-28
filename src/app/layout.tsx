@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from "@/utils/fonts";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
