@@ -1,6 +1,6 @@
 import Navbar from "@/components/ui/Navbar";
 
-export default function HomepageLayout({
+export default function AuthLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
@@ -8,7 +8,9 @@ export default function HomepageLayout({
 	return (
 		<>
 			<Navbar />
-			{children}
+			<div className="grow h-full flex justify-center items-center bg-[#fbfefd]">
+				{children}
+			</div>
 		</>
 	);
 }
