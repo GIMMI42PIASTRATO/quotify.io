@@ -4,6 +4,7 @@ import CardWrapper from "@/components/auth/CardWrapper";
 
 import * as z from "zod";
 
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -20,10 +21,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { FormError } from "@/components/FormError";
 import { FormSuccess } from "@/components/FormSuccess";
+import { login } from "@/actions/login";
 
 export default function LoginForm() {
-	type FormSchema = z.infer<typeof LoginSchema>;
+	const [isPending, startTransition] = useTransition();
 
+	type FormSchema = z.infer<typeof LoginSchema>;
 	const form = useForm<FormSchema>({
 		resolver: zodResolver(LoginSchema),
 		defaultValues: {
@@ -33,7 +36,9 @@ export default function LoginForm() {
 	});
 
 	const onSubmit = (data: FormSchema) => {
-		console.log(data);
+		startTransition(async () => {
+			const result = await login(data);
+		});
 	};
 
 	return (
@@ -58,6 +63,7 @@ export default function LoginForm() {
 									<FormLabel>Email</FormLabel>
 									<FormControl>
 										<Input
+											disabled={isPending}
 											placeholder="john.doe@example.com"
 											type="email"
 											{...field}
@@ -75,6 +81,7 @@ export default function LoginForm() {
 									<FormLabel>Password</FormLabel>
 									<FormControl>
 										<Input
+											disabled={isPending}
 											placeholder="******"
 											type="password"
 											{...field}
@@ -87,7 +94,11 @@ export default function LoginForm() {
 					</div>
 					<FormError message="" />
 					<FormSuccess message="" />
-					<Button type="submit" className="w-full">
+					<Button
+						disabled={isPending}
+						type="submit"
+						className="w-full"
+					>
 						Login
 					</Button>
 				</form>
