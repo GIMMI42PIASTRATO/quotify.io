@@ -55,7 +55,7 @@ export default function Navbar() {
 						) : (
 							<>
 								<Link
-									href="/register"
+									href="/auth/register"
 									className={buttonVariants({
 										size: "default",
 										variant: "ghost",
