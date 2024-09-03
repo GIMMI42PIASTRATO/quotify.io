@@ -2,14 +2,15 @@
 
 import * as z from "zod";
 import { LoginSchema } from "@/schemas";
+import { FormSuccess } from "@/components/FormSuccess";
 
 export const login = async (data: z.infer<typeof LoginSchema>) => {
-	const result = LoginSchema.safeParse(data);
+	const validatedFields = LoginSchema.safeParse(data);
 
-	if (!result.success) {
-		return result.error.format();
+	if (!validatedFields.success) {
+		return { error: "Invalid data" };
 	}
 
-	console.log(result.data);
-	return result.data;
+	console.log(validatedFields.data);
+	return { success: "Email sent" };
 };
