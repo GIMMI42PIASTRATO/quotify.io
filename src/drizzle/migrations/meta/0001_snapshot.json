@@ -1,9 +1,25 @@
 {
-  "id": "c4b8906f-7e6d-4571-a87e-1cb850127b72",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "ff8436eb-def4-4305-9589-aac4fb7cd7e9",
+  "prevId": "c4b8906f-7e6d-4571-a87e-1cb850127b72",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
+    "public.test": {
+      "name": "test",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
     "public.user": {
       "name": "user",
       "schema": "",
