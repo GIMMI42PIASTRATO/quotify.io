@@ -1,6 +1,11 @@
 "use server";
 
 import * as z from "zod";
+import bcrypt from "bcrypt";
+
+import { db } from "@/drizzle/db";
+import { Users } from "@/drizzle/schema";
+
 import { RegisterSchema } from "@/schemas";
 
 export const register = async (data: z.infer<typeof RegisterSchema>) => {
@@ -12,5 +17,27 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
 
 	console.log(validatedFields.data);
 
-	return { success: "Email sent" };
+	const { email, password, name } = validatedFields.data;
+	// hash the password
+	const hashedPassword = await bcrypt.hash(password, 10);
+
+	// check if the email is taken
+	const existingUser = await db.query.Users.findFirst({
+		where: (table, funcs) => funcs.eq(table.email, email),
+	});
+
+	if (existingUser) {
+		return { error: "Email already in use" };
+	}
+
+	// insert the user
+	await db.insert(Users).values({
+		email,
+		name,
+		password: hashedPassword,
+	});
+
+	// TODO: Send verification token email
+
+	return { success: "User created" };
 };
