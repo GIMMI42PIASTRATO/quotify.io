@@ -9,6 +9,8 @@ import { getUserByEmail } from "@/data/user";
 
 import { RegisterSchema } from "@/schemas";
 
+import { signIn } from "@/auth";
+
 export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	const validatedFields = RegisterSchema.safeParse(data);
 
@@ -41,6 +43,7 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	});
 
 	// TODO: Send verification token email
+	// await signIn("credentials", {});
 
 	return { success: "User created" };
 };
