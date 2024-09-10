@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 
 import { db } from "@/drizzle/db";
 import { Users } from "@/drizzle/schema";
+import { getUserByEmail } from "@/data/user";
 
 import { RegisterSchema } from "@/schemas";
 
@@ -22,11 +23,13 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	const hashedPassword = await bcrypt.hash(password, 10);
 
 	// check if the email is taken
-	const existingUser = await db.query.Users.findFirst({
-		where: (table, funcs) => funcs.eq(table.email, email),
-	});
+	const response = await getUserByEmail(email);
 
-	if (existingUser) {
+	if (response.internalServerError) {
+		return { error: "Internal server error, try again" };
+	}
+
+	if (response.user) {
 		return { error: "Email already in use" };
 	}
 
