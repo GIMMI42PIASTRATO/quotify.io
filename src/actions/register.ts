@@ -43,7 +43,8 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	});
 
 	// TODO: Send verification token email
-	// await signIn("credentials", {});
+	// This is not an error to pass the unhashed password because it will be compared with the hashed password in the database.
+	// await signIn("credentials", { email, password });
 
 	return { success: "User created" };
 };
