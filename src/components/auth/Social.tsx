@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 
 import { Button } from "@/components/ui/button";
 
-import { githubSingIn, googleSingIn } from "@/actions/oauth";
+import { githubSingIn, googleSingIn } from "@/actions/OAuth";
 
 export default function Social() {
 	return (
