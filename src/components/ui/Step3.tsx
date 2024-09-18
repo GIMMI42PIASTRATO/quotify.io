@@ -35,7 +35,7 @@ export default function Step3() {
 				/>
 			</div>
 
-			<CtaButton href="/create/quote" className="w-auto mt-4">
+			<CtaButton href="/quote/create" className="w-auto mt-4">
 				Create your quote now
 			</CtaButton>
 		</>

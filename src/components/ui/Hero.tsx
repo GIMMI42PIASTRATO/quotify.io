@@ -21,7 +21,7 @@ export default function Hero() {
 					</span>
 				</p>
 				<div className="inline-flex flex-col sm:flex-row w-full max-w-sm items-center justify-between gap-3">
-					<CtaButton href="/create/quote">Try for free</CtaButton>
+					<CtaButton href="/quote/create">Try for free</CtaButton>
 					<Link
 						href="/pricing"
 						className={buttonVariants({

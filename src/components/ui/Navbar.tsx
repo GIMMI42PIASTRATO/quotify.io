@@ -79,7 +79,7 @@ export default function Navbar() {
 								<div className="h-8 w-px bg-zinc-200 hidden sm:block"></div>
 
 								<Link
-									href="/create/quote"
+									href="/quote/create"
 									className={buttonVariants({
 										size: "default",
 										className:
