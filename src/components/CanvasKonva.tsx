@@ -27,6 +27,16 @@ export default function CanvasKonva() {
 		};
 	}, []);
 
+	useEffect(() => {
+		if (containerRef.current) {
+			setPosition({
+				x: containerRef.current.offsetWidth / 2,
+				y: 250,
+				isDragging: false,
+			});
+		}
+	}, []);
+
 	return (
 		<div ref={containerRef} style={{ width: "100%" }}>
 			<Stage width={stageWidth} height={500}>
