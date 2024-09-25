@@ -6,6 +6,7 @@ type VerticalNavButtonProps = {
 	className?: string;
 	htmlFor: string;
 	label: string;
+	setIsHover: (value: boolean) => void;
 };
 
 export default function VerticalNavButton({
@@ -13,13 +14,16 @@ export default function VerticalNavButton({
 	className,
 	htmlFor,
 	label,
+	setIsHover,
 }: VerticalNavButtonProps) {
 	return (
 		<div
 			className={cn(
-				"flex items-center justify-center flex-col h-[72px] w-full gap-1 cursor-pointer group",
+				"flex items-center justify-center flex-col h-[90px] w-full gap-1 cursor-pointer group",
 				className
 			)}
+			onMouseEnter={() => setIsHover(true)}
+			onMouseLeave={() => setIsHover(false)}
 		>
 			<Button
 				className="group-hover:shadow-xl group-hover:text-yellow-400 group-hover:drop-shadow-xl group-hover:bg-gray-100"
