@@ -13,7 +13,7 @@ export default function AsideNavbar() {
 		<aside>
 			<nav
 				className={cn(
-					"pl-4 pr-4 pt-6 w-24 text-muted-foreground",
+					"pl-4 pr-4 pt-6 w-24 text-muted-foreground h-full",
 					isHover ? "bg-muted" : ""
 				)}
 			>

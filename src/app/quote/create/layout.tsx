@@ -6,9 +6,9 @@ export default function HomepageLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="flex">
+		<div className="flex min-h-screen">
 			<AsideNavbar />
-			{children}
+			<main className="flex-grow">{children}</main>
 		</div>
 	);
 }
