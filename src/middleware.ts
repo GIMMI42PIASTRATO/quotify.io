@@ -1,4 +1,8 @@
-export { auth as middleware } from "@/auth";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function middleware(request: NextRequest): Promise<NextResponse> {
+	return NextResponse.next();
+}
 
 export const config = {
 	matcher: [

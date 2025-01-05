@@ -1,10 +1,7 @@
 "use server";
-import { signIn } from "@/auth";
 
-export const githubSingIn = async () => {
-	await signIn("github", { redirectTo: "/quote/create" });
-};
+// change to Artic
 
-export const googleSingIn = async () => {
-	await signIn("google", { redirectTo: "/quote/create" });
-};
+export const githubSingIn = async () => {};
+
+export const googleSingIn = async () => {};
