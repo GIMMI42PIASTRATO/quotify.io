@@ -4,12 +4,10 @@ import * as z from "zod";
 import bcrypt from "bcrypt";
 
 import { db } from "@/drizzle/db";
-import { Users } from "@/drizzle/schema";
+import { userTable } from "@/drizzle/schema";
 import { getUserByEmail } from "@/data/user";
 
 import { RegisterSchema } from "@/schemas";
-
-import { signIn } from "@/auth";
 
 export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	const validatedFields = RegisterSchema.safeParse(data);
@@ -25,21 +23,21 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
 	const hashedPassword = await bcrypt.hash(password, 10);
 
 	// check if the email is taken
-	const response = await getUserByEmail(email);
+	const { user, internalServerError } = await getUserByEmail(email);
 
-	if (response.internalServerError) {
+	if (internalServerError) {
 		return { error: "Internal server error, try again" };
 	}
 
-	if (response.user) {
+	if (user) {
 		return { error: "Email already in use" };
 	}
 
 	// insert the user
-	await db.insert(Users).values({
+	await db.insert(userTable).values({
 		email,
-		name,
 		password: hashedPassword,
+		username: name,
 	});
 
 	// TODO: Send verification token email

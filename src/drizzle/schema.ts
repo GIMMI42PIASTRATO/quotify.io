@@ -1,44 +1,26 @@
 import {
-	timestamp,
-	pgTable,
-	text,
 	integer,
-	primaryKey,
+	pgTable,
+	serial,
+	varchar,
+	timestamp,
 } from "drizzle-orm/pg-core";
 
-import { AdapterAccountType } from "next-auth/adapters";
-
-export const Users = pgTable("user", {
-	id: text("id")
-		.primaryKey()
-		.$defaultFn(() => crypto.randomUUID()),
-	name: text("name"),
-	email: text("email").unique(),
-	password: text("password"),
-	emailVerified: timestamp("emailVerified", { mode: "date" }),
-	image: text("image"),
+export const userTable = pgTable("users", {
+	id: serial("id").primaryKey(),
+	username: varchar("username", { length: 50 }).unique().notNull(),
+	password: varchar("password", { length: 255 }).notNull(),
+	email: varchar("email", { length: 50 }).unique().notNull(),
+	googleId: varchar("goodle_id", { length: 255 }).unique(),
+	githubId: varchar("github_id", { length: 255 }).unique(),
+	created_at: timestamp("created_at").defaultNow(),
+	updated_at: timestamp("updated_at").defaultNow(),
 });
 
-export const Accounts = pgTable(
-	"account",
-	{
-		userId: text("userId")
-			.notNull()
-			.references(() => Users.id, { onDelete: "cascade" }),
-		type: text("type").$type<AdapterAccountType>().notNull(),
-		provider: text("provider").notNull(),
-		providerAccountId: text("providerAccountId").notNull(),
-		refresh_token: text("refresh_token"),
-		access_token: text("access_token"),
-		expires_at: integer("expires_at"),
-		token_type: text("token_type"),
-		scope: text("scope"),
-		id_token: text("id_token"),
-		session_state: text("session_state"),
-	},
-	(account) => ({
-		compoundKey: primaryKey({
-			columns: [account.provider, account.providerAccountId],
-		}),
-	})
-);
+export const sessionTable = pgTable("sessions", {
+	id: varchar("id").primaryKey(),
+	userId: integer("user_id")
+		.notNull()
+		.references(() => userTable.id),
+	expiresAt: timestamp("expires_at").notNull(),
+});
