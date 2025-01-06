@@ -13,8 +13,8 @@ export const userTable = pgTable("users", {
 	email: varchar("email", { length: 50 }).unique().notNull(),
 	googleId: varchar("goodle_id", { length: 255 }).unique(),
 	githubId: varchar("github_id", { length: 255 }).unique(),
-	created_at: timestamp("created_at").defaultNow(),
-	updated_at: timestamp("updated_at").defaultNow(),
+	createdAt: timestamp("created_at").defaultNow().notNull(),
+	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const sessionTable = pgTable("sessions", {
